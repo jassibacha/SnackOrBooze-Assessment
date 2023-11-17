@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SnackOrBoozeApi from './Api';
 import { capitalizeFirstLetterAndRemoveLast } from './utils/utils';
 import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 

@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Home';
 import SnackOrBoozeApi from './Api';
 import NavBar from './NavBar';
+import NotFound from './NotFound';
 import { Route, Switch } from 'react-router-dom';
 import Menu from './Menu';
 import Item from './Item';
@@ -83,8 +84,8 @@ function App() {
                             <Item items={allItems.drinks} cantFind="/drinks" />
                         </Route>
                         <Route>
-                            {/* If no route matches, render a message */}
-                            <p>Hmmm. I can't seem to find what you want.</p>
+                            {/* If no route matches 404 */}
+                            <NotFound />
                         </Route>
                     </Switch>
                 </main>
