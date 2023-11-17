@@ -10,20 +10,22 @@ const BASE_API_URL = 'http://localhost:5000';
 */
 
 class SnackOrBoozeApi {
-    // static async getAllItems() {
-    //     const result = await axios.get(`${BASE_API_URL}`);
-    //     console.log('getAllItems() result.data: ', result.data);
-    //     return {
-    //         snacks: result.data.snacks,
-    //         drinks: result.data.drinks,
-    //     };
+    // static async getSnacks() {
+    //     const result = await axios.get(`${BASE_API_URL}/snacks`);
+    //     return result.data;
     // }
-    static async getSnacks() {
-        const result = await axios.get(`${BASE_API_URL}/snacks`);
+    // static async getDrinks() {
+    //     const result = await axios.get(`${BASE_API_URL}/drinks`);
+    //     return result.data;
+    // }
+
+    static async getItems(type) {
+        const result = await axios.get(`${BASE_API_URL}/${type}`);
         return result.data;
     }
-    static async getDrinks() {
-        const result = await axios.get(`${BASE_API_URL}/drinks`);
+
+    static async addItem(item, type) {
+        const result = await axios.post(`${BASE_API_URL}/${type}`, item);
         return result.data;
     }
 }

@@ -20,9 +20,9 @@ function App() {
          */
         async function getAllItems() {
             // Retrieve snacks from the API
-            let snacks = await SnackOrBoozeApi.getSnacks();
+            let snacks = await SnackOrBoozeApi.getItems('snacks');
             // Retrieve drinks from the API
-            let drinks = await SnackOrBoozeApi.getDrinks();
+            let drinks = await SnackOrBoozeApi.getItems('drinks');
             // Set all items in state
             setAllItems({ snacks, drinks });
             // Set isLoading to false
@@ -31,6 +31,14 @@ function App() {
 
         getAllItems();
     }, []);
+
+    const addItem = async (newItem, type) => {
+        await SnackOrBoozeApi.addItem(newItem, type);
+        setAllItems((prevItems) => ({
+            ...prevItems,
+            [type]: [...prevItems[type], newItem],
+        }));
+    };
 
     // If still loading, render a loading message
     if (isLoading) {
@@ -54,6 +62,7 @@ function App() {
                                 items={allItems.snacks}
                                 type="snacks"
                                 title="Snacks"
+                                onAddItem={(item) => addItem(item, 'snacks')}
                             />
                         </Route>
                         <Route path="/snacks/:id">
@@ -66,6 +75,7 @@ function App() {
                                 items={allItems.drinks}
                                 type="drinks"
                                 title="Drinks"
+                                onAddItem={(item) => addItem(item, 'drinks')}
                             />
                         </Route>
                         <Route path="/drinks/:id">
